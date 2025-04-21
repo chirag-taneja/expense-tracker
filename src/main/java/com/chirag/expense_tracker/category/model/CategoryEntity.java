@@ -28,10 +28,10 @@ public class CategoryEntity {
     @Column(nullable = false)
     private String crtUser;
 
-    @Column(nullable = false)
+
     private LocalDateTime lstUpdateDate;
 
-    @Column(nullable = false)
+
     private String lstUpdateUser;
 
 }

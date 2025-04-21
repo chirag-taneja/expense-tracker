@@ -16,8 +16,7 @@ import java.time.LocalDateTime;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private String userId;
 
     @Column(name = "USERNAME", nullable = false)
     private String username;
@@ -28,17 +27,17 @@ public class UserEntity {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "FULL_NAME")
+    @Column(name = "FULL_NAME",nullable = false)
     private String fullName;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(name = "CRT_DATE")
+    @Column(name = "CRT_DATE",nullable = false)
     private LocalDateTime crtDate;
 
-    @Column(name = "CRT_USER")
+    @Column(name = "CRT_USER",nullable = false)
     private String crtUser;
 
     @Column(name = "LST_UPDATE_DATE")
