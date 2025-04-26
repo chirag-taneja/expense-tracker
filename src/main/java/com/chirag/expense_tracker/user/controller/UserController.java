@@ -1,16 +1,20 @@
 package com.chirag.expense_tracker.user.controller;
 
+import com.chirag.expense_tracker.user.dto.LoginDto;
+import com.chirag.expense_tracker.user.dto.UserDto;
+import com.chirag.expense_tracker.user.model.UserEntity;
 import com.chirag.expense_tracker.user.service.UserService;
+import com.chirag.expense_tracker.user.vo.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
+    PasswordEncoder passwordEncoder;
 
     UserService userService;
 
@@ -19,9 +23,26 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<Object> getTestHello()
-    {
-        return ResponseEntity.ok().body("hello");
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserResponse> saveNewUser(@RequestBody UserDto userDto)
+    {
+      return ResponseEntity.ok(userService.saveNewUser(userDto));
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<String> loginUser(@RequestBody LoginDto loginDto)
+    {
+        UserEntity user=userService.findByUserName(loginDto.getUserName());
+        if (passwordEncoder.matches(loginDto.getPassword(), user.getPassword()))
+        {
+            return ResponseEntity.ok("Login successfully");
+        }
+        return ResponseEntity.ok("Login Failed");
+    }
+
 }

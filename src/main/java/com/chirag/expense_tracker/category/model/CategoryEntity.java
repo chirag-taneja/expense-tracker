@@ -34,4 +34,63 @@ public class CategoryEntity {
 
     private String lstUpdateUser;
 
+    public CategoryEntity() {
+    }
+
+    public CategoryEntity(String categoryId, String categoryName, LocalDateTime crtDate, String crtUser, LocalDateTime lstUpdateDate, String lstUpdateUser) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.crtDate = crtDate;
+        this.crtUser = crtUser;
+        this.lstUpdateDate = lstUpdateDate;
+        this.lstUpdateUser = lstUpdateUser;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public LocalDateTime getCrtDate() {
+        return crtDate;
+    }
+
+    public void setCrtDate(LocalDateTime crtDate) {
+        this.crtDate = crtDate;
+    }
+
+    public String getCrtUser() {
+        return crtUser;
+    }
+
+    public void setCrtUser(String crtUser) {
+        this.crtUser = crtUser;
+    }
+
+    public LocalDateTime getLstUpdateDate() {
+        return lstUpdateDate;
+    }
+
+    public void setLstUpdateDate(LocalDateTime lstUpdateDate) {
+        this.lstUpdateDate = lstUpdateDate;
+    }
+
+    public String getLstUpdateUser() {
+        return lstUpdateUser;
+    }
+
+    public void setLstUpdateUser(String lstUpdateUser) {
+        this.lstUpdateUser = lstUpdateUser;
+    }
 }
